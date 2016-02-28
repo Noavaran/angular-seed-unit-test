@@ -23,6 +23,22 @@ describe('add', function(){
                 addService.getItem('88').then(function(resp){
 
                     expect(resp).toBe(true);
+            
+                }).catch(function(error){
+                    expect(error).not.toBe(false);
+                });
+
+                addService.setItem("set", 7).then(function(resp){
+
+                    expect(resp).toBe(true);
+
+                }).catch(function(error){
+                    expect(error).not.toBe(false);
+                });
+
+                addService.removeItem("set").then(function(resp){
+
+                    expect(resp).toBe(true);
 
                 }).catch(function(error){
                     expect(error).not.toBe(false);
