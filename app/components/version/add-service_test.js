@@ -10,20 +10,32 @@ describe('add', function(){
 
     beforeEach(module('myApp'));
 
-    describe('restAPI unit tests', function() {
+    describe('test', function() {
         beforeEach(inject(
             function($injector) {
                 addService = $injector.get('add-service');
-                localForage = $injector.get('$localForage');
+                //localForage = $injector.get('$localForage');
             }
         ));
 
-        it('Should remove in local storage the Authorization header', function(){
-                spyOn(localForage, "setItem");
+        inject(function($localForage) {
+            localForage = $localForage;
+
+            spyOn(localForage, 'getItem');
+            spyOn(localForage, 'setItem');
+            console.log(localForage)
+        });
+
+        it('Should remove in localForage the Authorization header', function(){
+            //spyOn(localForage,['setItem']);
+                //spyOn(localForage, "setItem");
+            //localForage.setItem('test', 50).then(function(resp){
+            //    console.log('sssssssssss')
+            //})
                 addService.getItem('88').then(function(resp){
 
                     expect(resp).toBe(true);
-            
+
                 }).catch(function(error){
                     expect(error).not.toBe(false);
                 });
